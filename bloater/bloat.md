@@ -50,13 +50,13 @@ gcc -fno-stack-protector -z execstack -O0 -fno-inline -fno-unroll-loops -fno-opt
 
 ### After bloat:
 **Virus total detections: 7/66 = 10.61**
-Avira (no cloud) - LINUX/Small.194.S
-ClamAV - Unix.Backdoor.Msfvenom-10006778-1
-Cynet - Malicious (score: 99)
-Elastic - Linux.Trojan.Metasploit
-Google - Detected
-Microsoft - Backdoor:Linux/GetShell.A!xp
-WithSecure - Malware.LINUX/Small.194.S
+- Avira (no cloud) - LINUX/Small.194.S
+- ClamAV - Unix.Backdoor.Msfvenom-10006778-1
+- Cynet - Malicious (score: 99)
+- Elastic - Linux.Trojan.Metasploit
+- Google - Detected
+- Microsoft - Backdoor:Linux/GetShell.A!xp
+- WithSecure - Malware.LINUX/Small.194.S
 
 ### Bloat Detection Difference:
 - ALYac - Trojan.Linux.Getshell.P
