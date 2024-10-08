@@ -26,7 +26,7 @@ gcc -fno-stack-protector -z execstack -O0 -fno-inline -fno-unroll-loops -fno-opt
 (Basic Linux TCP shell tested on 2024/09/17)
 
 ### Before bloat:
-**Virus total detections: 20/66 = 30.30**
+**Virus total detections: 20/66 = 30.30%**
 - ALYac - Trojan.Linux.Getshell.P
 - Arcabit - Trojan.Linux.Getshell.P
 - Avast - ELF:Shellshock-C [Expl]
@@ -49,7 +49,7 @@ gcc -fno-stack-protector -z execstack -O0 -fno-inline -fno-unroll-loops -fno-opt
 - WithSecure - Malware.LINUX/Small.194.S
 
 ### After bloat:
-**Virus total detections: 7/66 = 10.61**
+**Virus total detections: 7/66 = 10.61%**
 - Avira (no cloud) - LINUX/Small.194.S
 - ClamAV - Unix.Backdoor.Msfvenom-10006778-1
 - Cynet - Malicious (score: 99)
