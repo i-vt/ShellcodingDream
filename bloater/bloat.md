@@ -3,15 +3,19 @@
 ## How to use
 1. Create bloated code
 ```
-python3 bloat_c.py -f 100000 -v 100000 -s 10000 ;
+python3 bloat_c.py -f 100000 -v 100000 -s 10000 --out bloated.c
+
 ```
 
-2. Insert interesting code somewhere in the middle of the bloated code. **do not use notepad** - it will lag out like crazy, but vi works amazing.
+2. Insert interesting code:
+```
+python3 helper_c.py --bloated bloated.c --main main_code.c --output output.c 
+```
 
 
 3. Compile it
 ```
-gcc -fno-stack-protector -z execstack -O0 -fno-inline -fno-unroll-loops -fno-optimize-sibling-calls -fno-omit-frame-pointer -fno-tree-ccp -fno-strength-reduce -g -o rand random_code.c 
+gcc -fno-stack-protector -z execstack -O0 -fno-inline -fno-unroll-loops -fno-optimize-sibling-calls -fno-omit-frame-pointer -fno-tree-ccp -fno-strength-reduce -g -o compiled output.c 
 ```
 
 
