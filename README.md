@@ -1,16 +1,208 @@
-# ShellcodingDream
-## Disclaimer for "ShellcodingDream":
+# ShellcodingDream - Advanced Shellcode Obfuscation Framework
 
-### Summary: 
-Don't be an idiot and be responsible with usage. Pentesting without authorization is illegal.
+Professional-grade shellcode obfuscation and evasion toolkit for penetration testing and red team operations.
 
-### In depth: 
-1. General Use: This software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and non-infringement. In no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.
-2. Potential Misuse: The software is designed for legitimate purposes only. Any misuse, including but not limited to illegal, unethical, or unauthorized activities, is strictly discouraged and not the intention of the developers.
-3. User Responsibility: Any person, entity, or organization choosing to use this software bears the full responsibility for its actions while using the software. It is the user's responsibility to ensure that their use of this software complies with local, state, national, and international laws and regulations.
-4. No Liability: The creators, developers, and distributors of this software are not responsible for any harm or damage caused, directly or indirectly, by the misuse or use of this software.
-5. Updates and Monitoring: The developers reserve the right to update, modify, or discontinue the software at any time. Users are advised to always use the most recent version of the software. However, even with updates, the developers cannot guarantee that the software is completely secure or free from vulnerabilities.
-6. Third-Party Software/Links: This software may contain links to third-party sites or utilize third-party software/tools. The developers are not responsible for the content or privacy practices of those sites or software.
-7. Unauthorized Access: Using "ShellcodingDream" to access, probe, or connect to systems, networks, or data without explicit permission from appropriate parties is strictly discouraged, unethical, and illegal. Unauthorized access to systems, networks, or data breaches various local, national, and international laws, and can result in severe legal consequences. Always obtain the necessary permissions before accessing any systems or data. The developers of "ShellcodingDream" disavow any actions taken by individuals or entities that use this software for unauthorized activities.
+## Features
 
-By downloading, installing, or using "ShellcodingDream" you acknowledge that you have read, understood, and agreed to abide by this disclaimer. If you do not agree to these terms, do not use the software.
+- **7 Advanced Encoders**: XOR, ROT13, Base64, RC4, UUID, IP Address, MAC Address
+- **Automated Testing**: Built-in payload validation
+- **Multi-Platform**: Linux and Windows (x86/x64)
+- **Docker Ready**: One command to run everything
+- **OSCP Optimized**: Fast, reliable, exam-ready
+
+## Quick Start
+
+### Installation
+
+```bash
+# Clone or download this project
+cd ShellcodingDream-Complete
+
+# Build Docker image
+docker-compose build
+
+# Run
+docker-compose run --rm shellcoding --help
+```
+
+### Basic Usage
+
+```bash
+# List encoders
+docker-compose run --rm shellcoding list
+
+# Encode payload
+docker-compose run --rm shellcoding encode \
+  --technique xor \
+  --input payload.hex \
+  --output encoded.c
+
+# Compile
+docker-compose run --rm shellcoding compile \
+  --technique xor \
+  --input encoded.c \
+  --platform linux
+
+# Full pipeline (encode → compile → test)
+docker-compose run --rm shellcoding pipeline \
+  --technique xor \
+  --input payload.hex \
+  --platform linux
+```
+
+## Encoders
+
+| Encoder | Speed | Effectiveness | Use Case |
+|---------|-------|----------------|----------|
+| XOR | Fastest | Good | Default choice |
+| ROT13 | Fast | Good | Simple obfuscation |
+| Base64 | Medium | Medium | Hide in plain sight |
+| RC4 | Medium | Very Good | Strong encryption |
+| UUID | Medium | Good | Network config evasion |
+| IP | Medium | Good | Network evasion |
+| MAC | Medium | Good | Network evasion |
+
+## OSCP Quick Reference
+
+```bash
+# Generate payload (Linux reverse shell)
+# Use msfvenom or MSFconsole to generate shellcode first
+
+# Try XOR (fastest, 30 seconds)
+docker-compose run --rm shellcoding pipeline \
+  --technique xor --input payload.hex --platform linux
+
+# If blocked, try RC4 (30 seconds)
+docker-compose run --rm shellcoding pipeline \
+  --technique rc4 --input payload.hex --platform linux
+
+# Still blocked? Try others...
+docker-compose run --rm shellcoding pipeline \
+  --technique base64 --input payload.hex --platform linux
+```
+
+## Documentation
+
+- `docs/QUICK_START.md` - Fast reference guide
+- `docs/OSCP_GUIDE.md` - OSCP exam tips
+- `docs/ADVANCED.md` - Advanced techniques
+
+## File Structure
+
+```
+ShellcodingDream-Complete/
+├── Dockerfile                 # Docker build instructions
+├── docker-compose.yml         # Docker compose config
+├── requirements.txt           # Python dependencies
+├── app/
+│   ├── main.py               # CLI interface
+│   ├── encoder.py            # Encoder interface
+│   ├── compiler.py           # C compiler wrapper
+│   └── validator.py          # Payload validator
+├── encoders/                 # Encoding implementations
+│   ├── xor.py
+│   ├── rot13.py
+│   ├── base64.py
+│   ├── rc4.py
+│   ├── uuid.py
+│   ├── ip_address.py
+│   └── mac_address.py
+├── templates/                # C code templates
+├── scripts/                  # Helper scripts
+└── docs/                     # Documentation
+```
+
+## Commands
+
+### Encoding
+
+```bash
+# XOR encoding
+docker-compose run --rm shellcoding encode \
+  --technique xor --input payload.hex --key 0xAA
+
+# RC4 encoding
+docker-compose run --rm shellcoding encode \
+  --technique rc4 --input payload.hex
+```
+
+### Compilation
+
+```bash
+# Linux x64
+docker-compose run --rm shellcoding compile \
+  --technique xor --input encoded.c --platform linux --arch x64
+
+# Windows x64
+docker-compose run --rm shellcoding compile \
+  --technique xor --input encoded.c --platform windows --arch x64
+```
+
+### Testing
+
+```bash
+# Test compiled payload
+docker-compose run --rm shellcoding test --payload ./payload
+```
+
+### Full Pipeline
+
+```bash
+# All-in-one: encode → compile → test
+docker-compose run --rm shellcoding pipeline \
+  --technique xor --input payload.hex --platform linux --verbose
+```
+
+## Troubleshooting
+
+### Docker not found
+```bash
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+```
+
+### Permission denied
+```bash
+sudo usermod -aG docker $USER
+# Log out and back in
+```
+
+### Build fails
+```bash
+# Force rebuild
+docker-compose build --no-cache
+```
+
+## OSCP Exam Tips
+
+1. **Pre-build before exam**
+   ```bash
+   docker-compose build
+   docker pull shellcoding-dream:latest
+   ```
+
+2. **Test locally first**
+   ```bash
+   docker-compose run --rm shellcoding list
+   docker-compose run --rm shellcoding pipeline \
+     --technique xor --input test.hex --platform linux
+   ```
+
+3. **Know your commands**
+   - Have quick reference written down
+   - Practice under time pressure
+   - Know which encoder to try first
+
+4. **Decision tree during exam**
+   - Try XOR first (fastest)
+   - If blocked, try RC4
+   - If still blocked, try others
+   - Skip if taking >5 minutes per target
+
+## License
+
+Educational use only. Authorized testing only.
+
+## Disclaimer
+
+This tool is for authorized penetration testing only. Unauthorized access to systems is illegal. Always have written permission before testing.

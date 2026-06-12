@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  shellcoding:
+    build: .
+    image: shellcoding-dream:latest
+    container_name: shellcoding
+    
+    volumes:
+      - ./output:/output
+      - ./.cache:/shellcoding/.cache
+    
+    stdin_open: true
+    tty: true
+    
+    working_dir: /output
+    
+    cap_add:
+      - NET_RAW
+      - NET_ADMIN

@@ -1,0 +1,114 @@
+╔════════════════════════════════════════════════════════════════╗
+║           ShellcodingDream - START HERE                        ║
+║    Professional Shellcode Obfuscation & Evasion Framework      ║
+╚════════════════════════════════════════════════════════════════╝
+
+QUICK START (5 minutes):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Build Docker image:
+   docker-compose build
+
+2. Test it works:
+   docker-compose run --rm shellcoding list
+
+3. Done! Read the docs:
+   cat docs/QUICK_START.md
+
+
+FOR OSCP EXAM:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Before exam:
+1. docker-compose build
+2. docker-compose run --rm shellcoding list  (verify it works)
+3. Read: docs/OSCP_GUIDE.md
+
+During exam:
+1. Generate payload: msfvenom -p ... -f c > payload.hex
+2. Run: docker-compose run --rm shellcoding pipeline \
+          --technique xor --input payload.hex --platform linux
+3. If blocked, try other encoders
+
+
+FULL DOCUMENTATION:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- docs/QUICK_START.md    - Fast reference guide
+- docs/OSCP_GUIDE.md     - Exam tips and tricks
+- README.md              - Full documentation
+
+
+FEATURES:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ 7 Advanced Encoders (XOR, ROT13, Base64, RC4, UUID, IP, MAC)
+✓ Automated Compilation
+✓ Built-in Testing
+✓ Multi-Platform (Linux & Windows, x86/x64)
+✓ Docker Ready (One command to run)
+✓ OSCP Optimized (Fast & Reliable)
+
+
+AVAILABLE COMMANDS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+docker-compose run --rm shellcoding list
+  → Show available encoders
+
+docker-compose run --rm shellcoding encode --technique xor --input payload.hex
+  → Encode with specific technique
+
+docker-compose run --rm shellcoding compile --technique xor --input encoded.c
+  → Compile encoded shellcode
+
+docker-compose run --rm shellcoding pipeline --technique xor --input payload.hex
+  → Full pipeline: encode + compile + test
+
+docker-compose run --rm shellcoding oscp
+  → Show OSCP quick reference
+
+docker-compose run --rm shellcoding --help
+  → Show all available commands
+
+
+TROUBLESHOOTING:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Docker not installed?
+  → https://docs.docker.com/get-docker/
+
+Docker Compose not installed?
+  → https://docs.docker.com/compose/install/
+
+Build fails?
+  → docker-compose build --no-cache
+
+Permissions denied?
+  → sudo usermod -aG docker $USER
+  → Log out and back in
+
+
+NEXT STEPS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Run setup script (optional):
+   bash setup.sh
+
+2. Read quick start:
+   cat docs/QUICK_START.md
+
+3. Test with example:
+   docker-compose run --rm shellcoding list
+
+4. For OSCP prep:
+   cat docs/OSCP_GUIDE.md
+
+
+Need help?
+→ cat README.md
+→ docker-compose run --rm shellcoding --help
+→ docker-compose run --rm shellcoding oscp
+
+
+Good luck! 🚀
